@@ -29,6 +29,28 @@ const Hero = styled.div`
       z-index: 3;
     }
 
+    .content_1 {
+      font-size: 35px;
+      line-height: 10px;
+      font-weight: 300;
+    }
+
+    .content_2 {
+      font-size: 24px;
+      line-height: 30px;
+      font-weight: 500;
+      margin: 12px;
+    }
+
+    .content_3 {
+      margin : auto;
+      text-align : center
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 400;
+      max-width: 300px;
+    }
+
     button {
       background: none;
       color: white;
@@ -37,11 +59,19 @@ const Hero = styled.div`
       height: 50px;
       cursor: pointer;
       font-weight: 600;
+      margin : 20px;
     }
 
     button:hover {
       background: white;
       color: #007bc1;
+    }
+  }
+
+  @media ${device.tablet}{
+    .content_3{
+      max-width: 400px;
+
     }
   }
 `;

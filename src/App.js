@@ -11,6 +11,7 @@ import {
   faChartLine,
   faCubes
 } from "@fortawesome/free-solid-svg-icons";
+import highlightsContent from "./data/highlightsContent.json";
 import { NotifWrapper } from "./styling/notif";
 import { Content } from "./styling/content";
 import { Hero } from "./styling/hero";
@@ -44,11 +45,9 @@ class App extends React.Component {
 
   componentDidMount() {
     const notifHeight = this.notif.clientHeight;
-    if (this.props.cookies.get("panel")) {
-      this.setState({ notifHeight, panel: false });
-    } else {
-      this.setState({ notifHeight, panel: true });
-    }
+    this.props.cookies.get("panel")
+      ? this.setState({ notifHeight, panel: false })
+      : this.setState({ notifHeight, panel: true });
   }
 
   closePanelOnClick = () => {
@@ -82,83 +81,32 @@ class App extends React.Component {
           <Hero>
             <img className="logo" src={logo} alt="logo" />
             <div>
-              <p>Hello! I'm Yusri Yunus</p>
-              <p>Consult,Design, and Develop Websites</p>
-              <p>Have something great in mind? Feel free to cantact me.</p>
-              <p>I'll help you to make it happen.</p>
+              <p className="content_1">Hello! I'm Yusri Yunus</p>
+              <p className="content_2">Consult,Design, and Develop Websites</p>
+              <p className="content_3">
+                Have something great in mind? Feel free to cantact me. I'll help
+                you to make it happen.
+              </p>
               <button>LETS MAKE CONTACT</button>
             </div>
           </Hero>
           <Body>
             <div className="title">
-              <p>How Can I Help You?</p>
-              <p>
+              <p className="highlightTitle">How Can I Help You?</p>
+              <p className="highlightSubTitle">
                 Our work then targeted, best practices outcomes social
                 innovation synergy. Venture philanthropy, revolutionary
                 inclusive policymaker relief. User-centered program areas scale.
               </p>
             </div>
             <BoxWrapper>
-              <Box>
-                <FontAwesomeIcon icon="comments" size="lg" />
-                <p>Consult</p>
-                <p>
-                  Co-create, design thinking; strengthen infrastructure resist
-                  granular. Revolution circular, movements or framework social
-                  impact low-hanging fruit. Save the world compelling
-                  revolutionary progress.
-                </p>
-              </Box>
-              <Box>
-                <FontAwesomeIcon icon="paint-brush" size="lg" />
-                <p>Consult</p>
-                <p>
-                  Co-create, design thinking; strengthen infrastructure resist
-                  granular. Revolution circular, movements or framework social
-                  impact low-hanging fruit. Save the world compelling
-                  revolutionary progress.
-                </p>
-              </Box>
-              <Box>
-                <FontAwesomeIcon icon="cubes" size="lg" />
-                <p>Consult</p>
-                <p>
-                  Co-create, design thinking; strengthen infrastructure resist
-                  granular. Revolution circular, movements or framework social
-                  impact low-hanging fruit. Save the world compelling
-                  revolutionary progress.
-                </p>
-              </Box>
-              <Box>
-                <FontAwesomeIcon icon="bullhorn" size="lg" />
-                <p>Consult</p>
-                <p>
-                  Co-create, design thinking; strengthen infrastructure resist
-                  granular. Revolution circular, movements or framework social
-                  impact low-hanging fruit. Save the world compelling
-                  revolutionary progress.
-                </p>
-              </Box>
-              <Box>
-                <FontAwesomeIcon icon="server" size="lg" />
-                <p>Consult</p>
-                <p>
-                  Co-create, design thinking; strengthen infrastructure resist
-                  granular. Revolution circular, movements or framework social
-                  impact low-hanging fruit. Save the world compelling
-                  revolutionary progress.
-                </p>
-              </Box>
-              <Box>
-                <FontAwesomeIcon icon="chart-line" size="lg" />
-                <p>Consult</p>
-                <p>
-                  Co-create, design thinking; strengthen infrastructure resist
-                  granular. Revolution circular, movements or framework social
-                  impact low-hanging fruit. Save the world compelling
-                  revolutionary progress.
-                </p>
-              </Box>
+              {highlightsContent.map((list, index) => (
+                <Box key={list.id}>
+                  <FontAwesomeIcon icon={list.icon} size="lg" />
+                  <p className="boxTitle">{list.title}</p>
+                  <p>{list.content}</p>
+                </Box>
+              ))}
             </BoxWrapper>
           </Body>
           <Footer>
@@ -169,14 +117,14 @@ class App extends React.Component {
           <p className="close" onClick={this.closePanelOnClick}>
             +
           </p>
-          <p>Get latest updates in web technologies</p>
-          <p>
+          <p className="panelTitle">Get latest updates in web technologies</p>
+          <p className="panelContent">
             I write articles related to web technologies, such as design trends,
             development tools, UI/UX case studies and reviews, and more. Sign up
             to my newsletter to get them all.
           </p>
           <InputWrapper>
-            <input type="text" />
+            <input type="text" placeholder="Email addrerss" />
             <button>Count me in!</button>
           </InputWrapper>
         </PanelWrapper>
